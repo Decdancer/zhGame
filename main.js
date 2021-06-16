@@ -18,10 +18,15 @@ const quizColors = [
 // insert a new color-name to look for
 const newWhat = document.querySelector("#quiz-title > span")
 console.log(newWhat.innerText)
-//newWhat.innerText = quiz-colors.name[0]
-console.log(quizColors)
-console.log(quiz.colors.name[0])
+newWhat.innerText = 'tomato'
+console.log(newWhat)
 
+console.log(quizColors[1].name)
+newWhat.innerText = quizColors[1].name
+
+// insert a new color-name into card
+const newValue = document.querySelector('.cards div')
+console.log(newValue.value)
 
 console.log(document.getElementsByTagName("div"[1]))
 const newBox = document.querySelector('.cards')
@@ -33,11 +38,40 @@ const newPic = document.querySelector('img').setAttribute('src', 'https://images
 
 //game - to see a word & guess the correct pic out of 3
 
-//1) random choice of 3 pairs colors(pics)-words out of source
+//1) random choice of 3 objects colors(pics)-words out of source
+function shuffle(arr) {
+    let newArr = [];
+    let arr1 = arr.slice()
+    let currentIndex = arr.length;
+    let randomIndex;
+    while (currentIndex) {
+        randomIndex = Math.floor(Math.random() * currentIndex--);
+        newArr.push(arr1.splice(randomIndex, 1)[0])
+    }
+    return newArr.slice(-3);
+};
+console.log(shuffle(quizColors));
+
+console.log(shuffle(quizColors));
 
 //2) random placement of those three colors(pics) on three cards-places
 
 //3) random choice of 1 word from those three to display as quiz-word
 
 //4-right) if player clicks on the correct pic -> its border turns green, score++ -> in a moment game step 1)
+/* 
+1) if html has : <div id="card1" onclick="clickFunction()">
+2) document.querySelector('#card1').onclick = clickFunction; or = function () {console.log('click');}
+
+function clickFunction() {
+console.log('click');
+}
+*/
+
+document.querySelector('#card1').addEventListener('click', clickFunction);
+
+function clickFunction() {
+    console.log('click');
+
+}
 //4-wrong) not correct pic -> its border turns red

@@ -1,16 +1,16 @@
 .checked {
-    background-color: red;
+    border: 10px solid red;
 }
 
-/* ! ? no bg image to see */
 body {
-   
-margin: 0;
-background: url('https://images.unsplash.com/photo-1520987623799-101883d6585a?') no-repeat;
-background-size: cover;
-
-  background-color:orangered tomato;
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    background: url('https://images.unsplash.com/photo-1520987623799-101883d6585a?') no-repeat;
+    background-size: cover;
+    background-color: tomato;
 }
+
+
 
 #canvas {
     background: #888888;
@@ -45,13 +45,24 @@ h1 {
 .cards > div {
     width: 30vh;
     height: 20vh;
-    background-color:salmon;
+    border: 10px solid transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
 }
 
+#card1 {
+    background-color: orangered;
+}
+
+#card2 {
+    background-color: green;
+}
+
+#card3 {
+    background-color: red;
+}
 
 /* how to put a pic of any size but to make visible a square part of it + centered
 */
