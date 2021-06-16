@@ -20,7 +20,7 @@ const newWhat = document.querySelector("#quiz-title > span")
 console.log(newWhat.innerText)
 //newWhat.innerText = quiz-colors.name[0]
 console.log(quizColors)
-console.log(quiz.colors[0].name)
+console.log(quiz.colors.name[0])
 
 
 console.log(document.getElementsByTagName("div"[1]))
