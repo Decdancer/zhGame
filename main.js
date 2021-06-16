@@ -1,5 +1,8 @@
 console.log(document)
 
+let randomOf3Cards = Math.floor(Math.random() * 3 + 1);
+console.log(randomOf3Cards)
+
 const quizColors = [
     {name: 'Tomato',        bcolor: '#FF6347', hex: 'rgb(255, 99, 71)'},
     {name: 'IndianRed',     bcolor:	'#CD5C5C', hex:	'rgb(205, 92, 92)'},
@@ -14,6 +17,23 @@ const quizColors = [
     {name: 'Orange',        bcolor:	'#FFA500', hex:	'rgb(255, 165, 0)'},
     {name: 'Oranged',       bcolor:	'#FF4500', hex:	'rgb(255, 69, 0)'},
 ];
+
+/*
+class ColorsGame {
+    constructor(quizColors) {
+        this.quizColors = quizColors;
+        this.shuffleColors(this.quizColors);
+
+    }
+
+};
+
+new game = new ColorsGame(quizColors);
+console.log(game.quizColors)
+quizC1.shuffleColors()
+*/
+
+
 
 // insert a new color-name to look for
 const newWhat = document.querySelector("#quiz-title > span")
@@ -39,7 +59,7 @@ const newPic = document.querySelector('img').setAttribute('src', 'https://images
 //game - to see a word & guess the correct pic out of 3
 
 //1) random choice of 3 objects colors(pics)-words out of source
-function shuffle(arr) {
+function shuffleColors(arr) {
     let newArr = [];
     let arr1 = arr.slice()
     let currentIndex = arr.length;
@@ -48,15 +68,24 @@ function shuffle(arr) {
         randomIndex = Math.floor(Math.random() * currentIndex--);
         newArr.push(arr1.splice(randomIndex, 1)[0])
     }
-    return newArr.slice(-3);
+    return newArr = newArr.slice(-3);
+    console.log(newArr);
 };
-console.log(shuffle(quizColors));
+//console.log(newArr);
+console.log(shuffleColors(quizColors));
 
-console.log(shuffle(quizColors));
+console.log(shuffleColors(quizColors));
 
 //2) random placement of those three colors(pics) on three cards-places
-
+const newCard1 = document.querySelector('#card1')
+newCard1.style.backgroundColor = quizColors[0].bcolor;
+console.log(newCard1.style.backgroundColor)
+console.log(quizColors[5].bcolor)
 //3) random choice of 1 word from those three to display as quiz-word
+
+    let randomColor = Math.floor(Math.random() * 3 + 1);
+console.log(randomColor)
+console.log(randomColor)
 
 //4-right) if player clicks on the correct pic -> its border turns green, score++ -> in a moment game step 1)
 /* 
