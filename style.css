@@ -1,5 +1,5 @@
 .checked {
-    border: 10px solid red;
+    border: 15px solid red;
 }
 
 body {
@@ -45,7 +45,7 @@ h1 {
 .cards > div {
     width: 30vh;
     height: 20vh;
-    border: 10px solid transparent;
+    border: 10px solid #888888;
     display: flex;
     flex-direction: column;
     align-items: center;

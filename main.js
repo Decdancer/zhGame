@@ -44,13 +44,16 @@ console.log(newWhat)
 console.log(quizColors[1].name)
 newWhat.innerText = quizColors[1].name
 
+
+
 // insert a new color-name into card
 const newValue = document.querySelector('.cards div')
-console.log(newValue.value)
+console.log(newValue)
 
 console.log(document.getElementsByTagName("div"[1]))
 const newBox = document.querySelector('.cards')
-console.log(newBox.classList)
+document.querySelector('#card1').value="baby"
+console.log(document.querySelector('#card1'))
 
 //insert a new pic
 const newPic = document.querySelector('img').setAttribute('src', 'https://images.unsplash.com/photo-1552757158-788e68d046dc?')
@@ -76,18 +79,44 @@ console.log(shuffleColors(quizColors));
 
 console.log(shuffleColors(quizColors));
 
-//2) random placement of those three colors(pics) on three cards-places
-const newCard1 = document.querySelector('#card1')
-newCard1.style.backgroundColor = quizColors[0].bcolor;
-console.log(newCard1.style.backgroundColor)
+//2) random (not anymore because of the shuffle before) placement of those three colors(pics) on three cards-places
+const newCard11 = document.querySelector('#card1')
+newCard11.style.backgroundColor = quizColors[2].bcolor;
+newCard11.value = 'bb'
+console.log(newCard11.style.backgroundColor)
 console.log(quizColors[5].bcolor)
+console.log(newCard11)
+console.log(newCard11.value)
+
+let newArr2 = shuffleColors(quizColors)
+console.log(newArr2)
+
+let newCard1 = document.querySelector('#card1')
+newCard1.style.backgroundColor = newArr2[0].bcolor;
+newCard1.value = newArr2[0].name;
+console.log(newCard1)
+console.log(newCard1.value)
+
+let newCard2 = document.querySelector('#card2')
+newCard2.style.backgroundColor = newArr2[1].bcolor;
+newCard2.value = newArr2[1].name;
+console.log(newCard2)
+console.log(newCard2.value)
+
+let newCard3 = document.querySelector('#card3')
+newCard3.style.backgroundColor = newArr2[2].bcolor;
+newCard3.value = newArr2[2].name;
+console.log(newCard3)
+console.log(newCard3.value)
 //3) random choice of 1 word from those three to display as quiz-word
 
-    let randomColor = Math.floor(Math.random() * 3 + 1);
-console.log(randomColor)
-console.log(randomColor)
+let newWhat1 = document.querySelector("#quiz-title > span")
+let random3 = Math.floor(Math.random() * 3);
+newWhat1.innerText = newArr2[random3].name
+console.log(random3)
+console.log(newArr2[random3].name)
 
-//4-right) if player clicks on the correct pic -> its border turns green, score++ -> in a moment game step 1)
+// user clickson a card
 /* 
 1) if html has : <div id="card1" onclick="clickFunction()">
 2) document.querySelector('#card1').onclick = clickFunction; or = function () {console.log('click');}
@@ -97,10 +126,92 @@ console.log('click');
 }
 */
 
-document.querySelector('#card1').addEventListener('click', clickFunction);
-
-function clickFunction() {
+/*
+document.querySelector('#card1').addEventListener('click', clickFunction1);
+function clickFunction1() {
     console.log('click');
-
 }
+*/
+
+document.querySelectorAll('.cards > div').forEach(function(card) {
+    card.onclick = checkCorrect;  
+})
+
+function checkCorrect(event) {
+ console.log(event.target.value);
+ console.log(`checked ${event.target.id}`);
+
+ countAtt = document.querySelector('#all-attempts');
+ countAtt.innerText++
+ document.querySelector('#all-attempts').innerText = countAtt.innerText++
+    console.log(countAtt)
+
+
+ if (event.target.value !== newWhat1.innerText) {
+    event.target.style.borderColor = 'red';
+    console.log('no711');
+    }        
+else {event.target.style.borderColor = 'green';
+    console.log('yes2');
+    return shuffleColors(quizColors)
+    }
+}
+
+/*
+function clickFunction1() {
+    let cardThis = document.querySelector('#card1')
+    counterAtt = document.querySelector('#all-attempts')
+    counterAtt.innerText++
+    document.querySelector('#all-attempts').innerText = counterAtt.innerText++
+    console.log(counterAtt)
+    if (cardThis.value !== newWhat1.innerText) {
+        cardThis.style.borderColor = 'black';
+        console.log('no711');
+} 
+    else {cardThis.style.borderColor = 'green';
+        console.log('yes2');
+        return shuffleColors(quizColors)}
+}
+
+
+
+document.querySelector('#card2').addEventListener('click', clickFunction2);
+function clickFunction2() {
+    console.log('click');
+}
+
+function clickFunction2() {
+    let cardThis = document.querySelector('#card2')
+    if (cardThis.value !== newWhat1.innerText) {cardThis.style.borderColor = 'black';
+    console.log('no2')} 
+    else {cardThis.style.borderColor = 'green';
+        console.log('yes2');
+        }
+}
+
+document.querySelector('#card3').addEventListener('click', clickFunction3);
+function clickFunction3() {
+    console.log('click');
+}
+
+function clickFunction3() {
+    let cardThis = document.querySelector('#card3')
+    if (cardThis.value !== newWhat1.innerText) {cardThis.style.borderColor = 'black';
+    console.log('no3')} 
+    else {cardThis.style.borderColor = 'green';
+        console.log('yes3');
+        }
+}
+*/
+
+//4-right) if player clicks on the correct pic -> its border turns green, score++ -> in a moment game step 1)
+if (newCard1.value === newWhat1.innerText) {console.log('yes1')}
+else if (newCard2.value === newWhat1.innerText) {console.log('yes2')}
+else if (newCard3.value === newWhat1.innerText) {console.log('yes3')}
+else {console.log('no3')};
+
 //4-wrong) not correct pic -> its border turns red
+if (newCard1.value !== newWhat1.innerText) {console.log('no1')}
+else if (newCard2.value !== newWhat1.innerText) {console.log('no2')}
+else if (newCard3.value !== newWhat1.innerText) {console.log('no3')}
+else {console.log('no4')};
