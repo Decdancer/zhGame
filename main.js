@@ -3,6 +3,10 @@ console.log(document)
 let randomOf3Cards = Math.floor(Math.random() * 3 + 1);
 console.log(randomOf3Cards)
 
+let playerHasWon = false;
+
+let resetCounter = 3;
+
 const quizColors = [
     {name: 'Tomato',        bcolor: '#FF6347', hex: 'rgb(255, 99, 71)'},
     {name: 'IndianRed',     bcolor:	'#CD5C5C', hex:	'rgb(205, 92, 92)'},
@@ -117,6 +121,7 @@ function gameStep(card) {
 }
 */
 function resetGame() {
+    playerHasWon = false;
 document.querySelectorAll('.cards > div').forEach(function(card) { 
     card.style.borderColor = '#999999';
 })
@@ -194,6 +199,7 @@ document.querySelectorAll('.cards > div').forEach(function(card) {
 
 
 function checkCorrect(event) {
+    if (playerHasWon === false) {
  console.log(event.target.value);
  console.log(`checked ${event.target.id}`);
 
@@ -210,19 +216,26 @@ console.log(document.querySelector("#quiz-title > span").innerText)
     }        
  else {
     event.target.style.borderColor = 'green';
+    
     //event.target.onclick('good'); -> not working
     console.log('yes2');
-
     countSuccess = document.querySelector('#correct-attempts');
     countSuccess.innerText++
     document.querySelector('#correct-attempts').innerText = countSuccess.innerText++
     console.log(countAtt);
+    playerHasWon = true;
+    resetCounter -= 1
 
     //let newArr333 = shuffleColors(quizColors);
     //return newArr333;
     // return shuffleColors(quizColors) --> not working
     // plus function - set initia bordes, shuffle
-    setTimeout(resetGame, 3000)
+    if (resetCounter > 0) {
+    setTimeout(resetGame, 1500)
+    }
+    else {
+        console.log('You are awesome!')}
+    }
     }
 }
 
