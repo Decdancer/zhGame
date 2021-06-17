@@ -2,6 +2,10 @@
     border: 15px solid red;
 }
 
+.good {
+    border: 20px solid green;
+}
+
 body {
     margin: 0;
     font-family: Roboto, sans-serif;

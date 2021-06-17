@@ -149,10 +149,18 @@ function checkCorrect(event) {
 
  if (event.target.value !== newWhat1.innerText) {
     event.target.style.borderColor = 'red';
+    //event.target.onclick('checked');
     console.log('no711');
     }        
-else {event.target.style.borderColor = 'green';
+else {
+    event.target.style.borderColor = 'green';
+    //event.target.onclick('good');
     console.log('yes2');
+
+    countSuccess = document.querySelector('#correct-attempts');
+    countSuccess.innerText++
+    document.querySelector('#correct-attempts').innerText = countSuccess.innerText++
+    console.log(countAtt);
     return shuffleColors(quizColors)
     }
 }
