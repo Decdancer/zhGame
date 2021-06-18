@@ -1,11 +1,8 @@
 console.log(document)
 
-let randomOf3Cards = Math.floor(Math.random() * 3 + 1);
-console.log(randomOf3Cards)
-
 let playerHasWon = false;
 
-let resetCounter = 3;
+let resetCounter = 7;
 
 const quizColors = [
     {name: 'Tomato',        bcolor: '#FF6347', hex: 'rgb(255, 99, 71)'},
@@ -27,9 +24,7 @@ class ColorsGame {
     constructor(quizColors) {
         this.quizColors = quizColors;
         this.shuffleColors(this.quizColors);
-
     }
-
 };
 
 new game = new ColorsGame(quizColors);
@@ -38,42 +33,10 @@ quizC1.shuffleColors()
 */
 
 
-
-// Test - insert a new color-name to look for
-const newWhat = document.querySelector("#quiz-title > span")
-console.log(newWhat.innerText)
-newWhat.innerText = 'tomato'
-console.log(newWhat)
-
-console.log(quizColors[1].name)
-newWhat.innerText = quizColors[1].name
-
-
-
-// Test - insert a new color-name into card
-const newValue = document.querySelector('.cards div')
-console.log(newValue)
-
-console.log(document.getElementsByTagName("div"[1]))
-const newBox = document.querySelector('.cards')
-document.querySelector('#card1').value="baby"
-console.log(document.querySelector('#card1'))
-
-// Test - insert a new pic -> not relevant anymore - just colors-game
-const newPic = document.querySelector('img').setAttribute('src', 'https://images.unsplash.com/photo-1552757158-788e68d046dc?')
-
-// Test - set a new color
-const newCard11 = document.querySelector('#card1')
-newCard11.style.backgroundColor = quizColors[2].bcolor;
-newCard11.value = 'bb'
-console.log(newCard11.style.backgroundColor)
-console.log(quizColors[5].bcolor)
-console.log(newCard11)
-console.log(newCard11.value)
-
 // Game - to see a word & guess the correct pic out of 3
 
 //1) random choice of 3 objects colors(pics)-words from the source
+
 function shuffleColors(arr) {
     let newArr = [];
     let arr1 = arr.slice()
@@ -84,11 +47,9 @@ function shuffleColors(arr) {
         newArr.push(arr1.splice(randomIndex, 1)[0])
     }
     return newArr = newArr.slice(-3);
-    console.log(newArr);
 };
 //console.log(newArr);
-console.log(shuffleColors(quizColors));
-
+console.log(shuffleColors(quizColors)); 
 console.log(shuffleColors(quizColors));
 
 
@@ -120,26 +81,28 @@ function gameStep(card) {
     };
 }
 */
-function resetGame() {
+function resetGame() { //new shuffle
+
     playerHasWon = false;
-document.querySelectorAll('.cards > div').forEach(function(card) { 
-    card.style.borderColor = '#999999';
-})
 
-let newArr8 = shuffleColors(quizColors)
-console.log(newArr8)
+    document.querySelectorAll('.cards > div').forEach(function(card) { 
+        card.style.borderColor = '#888888';
+    })
 
-newCard1 = document.querySelector('#card1')
-newCard1.style.backgroundColor = newArr8[0].bcolor;
-newCard1.value = newArr8[0].name;
-//console.log(newCard1)
-//console.log(newCard1.value)
+    let newArr8 = shuffleColors(quizColors)
+    console.log(newArr8)
 
-newCard2 = document.querySelector('#card2')
-newCard2.style.backgroundColor = newArr8[1].bcolor;
-newCard2.value = newArr8[1].name;
-//console.log(newCard2)
-//console.log(newCard2.value)
+    newCard1 = document.querySelector('#card1')
+    newCard1.style.backgroundColor = newArr8[0].bcolor;
+    newCard1.value = newArr8[0].name;
+    //console.log(newCard1)
+    //console.log(newCard1.value)
+
+    newCard2 = document.querySelector('#card2')
+    newCard2.style.backgroundColor = newArr8[1].bcolor;
+    newCard2.value = newArr8[1].name;
+    //console.log(newCard2)
+    //console.log(newCard2.value)
 
     newCard3 = document.querySelector('#card3')
     newCard3.style.backgroundColor = newArr8[2].bcolor;
@@ -149,13 +112,14 @@ newCard2.value = newArr8[1].name;
 
 
     //3) random choice of 1 word from those 3 to display as quiz-word
+    document.querySelector("#quiz-title").innerHTML = 'Which color is <span>what</span>?'
 
     newWhat1 = document.querySelector("#quiz-title > span")
     let random3 = Math.floor(Math.random() * 3);
     newWhat1.innerText = newArr8[random3].name
-    console.log(random3)
-    console.log(newArr8[random3].name)
-    }
+    //console.log(random3)
+    //console.log(newArr8[random3].name)
+}
 
 //
 
@@ -200,42 +164,44 @@ document.querySelectorAll('.cards > div').forEach(function(card) {
 
 function checkCorrect(event) {
     if (playerHasWon === false) {
- console.log(event.target.value);
- console.log(`checked ${event.target.id}`);
 
- countAtt = document.querySelector('#all-attempts');
- countAtt.innerText++
- document.querySelector('#all-attempts').innerText = countAtt.innerText++
-    console.log(countAtt)
+        //console.log(event.target.value);
+        //console.log(`checked ${event.target.id}`);
 
-console.log(document.querySelector("#quiz-title > span").innerText)
- if (event.target.value !== document.querySelector("#quiz-title > span").innerText) {
-    event.target.style.borderColor = 'red';
-    //event.target.onclick('checked'); -> not working
-    console.log('no711');
-    }        
- else {
-    event.target.style.borderColor = 'green';
+        countAtt = document.querySelector('#all-attempts');
+        countAtt.innerText++
+        document.querySelector('#all-attempts').innerText = countAtt.innerText++
+        console.log(countAtt)
+
+        //console.log(document.querySelector("#quiz-title > span").innerText)
+
+        if (event.target.value !== document.querySelector("#quiz-title > span").innerText) {
+            event.target.style.borderColor = 'red';
+            //event.target.onclick('checked'); -> not working
+            console.log('no711');
+        }        
+         else {
+            event.target.style.borderColor = 'green';
+            document.querySelector("#quiz-title").innerHTML= 'Great!';
     
-    //event.target.onclick('good'); -> not working
-    console.log('yes2');
-    countSuccess = document.querySelector('#correct-attempts');
-    countSuccess.innerText++
-    document.querySelector('#correct-attempts').innerText = countSuccess.innerText++
-    console.log(countAtt);
-    playerHasWon = true;
-    resetCounter -= 1
+            //event.target.onclick('good'); -> not working
+            //console.log('yes2');
+            countSuccess = document.querySelector('#correct-attempts');
+            countSuccess.innerText++
+            document.querySelector('#correct-attempts').innerText = countSuccess.innerText++ ;
+            //console.log(countAtt);
 
-    //let newArr333 = shuffleColors(quizColors);
-    //return newArr333;
-    // return shuffleColors(quizColors) --> not working
-    // plus function - set initia bordes, shuffle
-    if (resetCounter > 0) {
-    setTimeout(resetGame, 1500)
-    }
-    else {
-        console.log('You are awesome!')}
-    }
+            playerHasWon = true;
+            resetCounter -= 1;
+
+                if (resetCounter > 0) {
+                    setTimeout(resetGame, 1500)
+                }
+                else {
+                  console.log('You are awesome!');
+                  document.querySelector("#quiz-title").innerText = `You are awesome!`;
+                }
+        }
     }
 }
 
@@ -335,6 +301,37 @@ if (newCard1.value !== newWhat1.innerText) {console.log('no1')}
 else if (newCard2.value !== newWhat1.innerText) {console.log('no2')}
 else if (newCard3.value !== newWhat1.innerText) {console.log('no3')}
 else {console.log('no4')};
+
+// Test - insert a new color-name to look for
+const newWhat = document.querySelector("#quiz-title > span")
+console.log(newWhat.innerText)
+newWhat.innerText = 'tomato'
+console.log(newWhat)
+
+console.log(quizColors[1].name)
+newWhat.innerText = quizColors[1].name
+
+
+// Test - insert a new color-name into card
+const newValue = document.querySelector('.cards div')
+console.log(newValue)
+
+console.log(document.getElementsByTagName("div"[1]))
+const newBox = document.querySelector('.cards')
+document.querySelector('#card1').value="baby"
+console.log(document.querySelector('#card1'))
+
+// Test - insert a new pic -> not relevant anymore - just colors-game
+const newPic = document.querySelector('img').setAttribute('src', 'https://images.unsplash.com/photo-1552757158-788e68d046dc?')
+
+// Test - set a new color
+const newCard11 = document.querySelector('#card1')
+newCard11.style.backgroundColor = quizColors[2].bcolor;
+newCard11.value = 'bb'
+console.log(newCard11.style.backgroundColor)
+console.log(quizColors[5].bcolor)
+console.log(newCard11)
+console.log(newCard11.value)
 */
 
 /* Test - various ways to measure clicks

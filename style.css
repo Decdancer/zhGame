@@ -34,8 +34,13 @@ header {
   }
 
 h1 {
-    color: orange;
+    color:orange;
     width: 60vh;
+    height: 20vh;
+}
+
+h2 {
+    color:yellowgreen;
 }
 
 .cards {
