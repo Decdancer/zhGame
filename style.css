@@ -47,6 +47,7 @@ html {
   h1 {
     font-size: 3rem;
     color:orange;
+    height: 10vh;
     padding-top: 5vh;
   }
    
